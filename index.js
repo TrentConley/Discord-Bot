@@ -34,7 +34,7 @@ client.on('messageCreate', async (message) => {
         });
 
         // Save conversation history
-        conversation.messages.push({ role: 'bot', content: completion.choices[0].message.content });
+        conversation.messages.push({ role: 'assistant', content: completion.choices[0].message.content });
         await saveConversation(conversation);
 
         console.log(message.content);
