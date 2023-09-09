@@ -28,12 +28,16 @@ client.on('messageCreate', async (message) => {
         // Retrieve conversation history
         let conversation = await getConversation(message.author.id);
 
+        console.log(`before error`);
+        console.log(conversation);
         const completion = await openai.chat.completions.create({
             messages: conversation.messages.concat([{ role: 'user', content: message.content }]),
             model: 'gpt-3.5-turbo',
         });
+        console.log(`after error`);
 
         // Save conversation history
+        conversation.messages.push({role: 'user', content: message.content});
         conversation.messages.push({ role: 'assistant', content: completion.choices[0].message.content });
         await saveConversation(conversation);
 
