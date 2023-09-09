@@ -19,13 +19,24 @@ const openai = new OpenAI({
     apiKey: openAIKey, // defaults to process.env["OPENAI_API_KEY"]
 });
 
+const { getConversation, saveConversation } = require('./db');
+
 client.on('messageCreate', async (message) => {
     try {
         if (message.author.bot) return; //prevent infitie loop
+
+        // Retrieve conversation history
+        let conversation = await getConversation(message.author.id);
+
         const completion = await openai.chat.completions.create({
-            messages: [{ role: 'user', content: message.content }],
+            messages: conversation.messages.concat([{ role: 'user', content: message.content }]),
             model: 'gpt-3.5-turbo',
-          });
+        });
+
+        // Save conversation history
+        conversation.messages.push({ role: 'bot', content: completion.choices[0].message.content });
+        await saveConversation(conversation);
+
         console.log(message.content);
         console.log(completion.choices);
         message.reply(`${completion.choices[0].message.content}`)
