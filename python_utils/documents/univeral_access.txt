@@ -1,0 +1,6 @@
+Universal Access
+What is Universal Access?
+Universal Access allows users to pay gas on any chain on Prime
+Universal Access on Prime will allow users to originate a transaction from any supported chain on the platform. Users who wish to initiate a transaction on a chain that normally takes a longer amount of time to reach finality (ex. Ethereum or Polygon) will instead be able to initiate that transaction on a chain that is much faster and cheaper (ex. Moonbeam or Avalanche)! This feature allows for withdrawals or borrows to be requested on any chain, therefore granting users access to assets faster than anywhere else!
+Another possible use case for Universal Access will allow users to access liquidity on a chain without ever having a single asset on that chain! Let’s say a user wants access to a brand new yield farm on Polygon, but doesn’t have any $MATIC for gas fees. With Universal Access, the user can request a borrow of $MATIC from Polygon with any asset they hold on Prime, and use the $MATIC they receive to pay for gas for a borrow of the asset needed on Polygon to enter the yield farm. Users can receive assets in as little as two clicks on Prime.
+Read more about Universal Access here: https://medium.com/prime-protocol/introducing-universal-access-on-prime-protocol-originate-a-transaction-on-any-chain-f73137d3ab7c!

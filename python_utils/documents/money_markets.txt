@@ -1,0 +1,9 @@
+Money Markets
+What are Money Markets on Prime?
+Money Markets allow Prime users to borrow from other user deposits, thereby generating real yield for depositors and a wider selection of options for borrowers.
+By integrating Money Markets into Prime, we’re incredibly excited to enable greater opportunities for crypto users to unlock more value from their assets. There are a number of ways for users to utilize Money Markets on Prime! Let’s discuss some examples:
+Earn yield on your deposited tokens. Interest is continuously compounding and added to your deposit balance automatically. This is similar to how other major DeFi protocols, such as Compound and AAVE function.
+Borrow a token you’re bearish on. By selling and buying back at a lower price, you can make a profit.
+Borrow tokens you need to participate in yield farms without worrying about the slippage from swapping
+Borrow tokens you need for collateral in other protocols
+Prime Protocol will still be a cross-chain prime brokerage even with the introduction of Money Markets. Although users will have to repay Money Market borrows on the chain they originally borrowed on, all positions are still cross-margined within the protocol. That means even if a user has no deposits on a given chain, as long as they have deposits elsewhere, they can still take out a borrow. Users will benefit from the same liquidation system that considers all assets in the protocol before allowing liquidators to purchase collateral.

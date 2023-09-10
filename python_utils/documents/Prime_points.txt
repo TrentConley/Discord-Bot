@@ -1,0 +1,11 @@
+Prime Points
+Earn points and climb your way up the leaderboard on Prime Protocol!
+Prime Points is a system that offers a quantifiable measure of a user’s contribution to the success of the Prime ecosystem. There are currently three ways to earn points: Deposit, Borrow, and Referrals. Additional ways to earn points, such as community challenges, will become available as the Prime ecosystem expands. This program is an extension of the previous Prime Early Adopter Program — all the points you’ve gained thus far will remain, but now there are more ways to earn!
+For every 1 dollar deposited, one point is gained per year
+For every 1 dollar borrowed, three points are gained per year
+After your deposits or borrows are kept in the protocol for 1 week, points will start to accumulate at 2x the normal rate. This means that every dollar deposited for more than 1 week will earn 2 points per dollar per year, and every dollar borrowed for more than 1 week will earn 6 points per dollar per year.
+After your deposits or borrows are kept in the protocol for 2 weeks, points will start to accumulate at 3x the normal rate. This means that every dollar deposited for more than 2 weeks will earn 3 points per dollar per year, and every dollar borrowed for more than 2 weeks will earn 9 points per dollar per year.
+Points can now also be acquired through referrals! Referring users are entitled to 10% of the points earned by the individuals they referred. Notably, these points don’t diminish from the referred users’ balances, ensuring they continue to accumulate points at the stipulated rate.
+*Note: Referrals are only recorded when you refer new users (users who haven’t previously deposited or borrowed)
+If you withdraw or repay tokens, the rate of points accumulation on that market will be reset to 1x. Any points you gained up until this point will stay on the protocol. New deposits and borrows will earn the higher points accumulation after the thresholds are met again.
+Climb the ranks and see where you stand in the Prime Community with the brand new points leaderboard! 

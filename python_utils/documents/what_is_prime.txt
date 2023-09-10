@@ -1,0 +1,9 @@
+What is Prime Protocol?
+Prime Protocol is the first natively cross-chain prime brokerage
+Decentralized finance has evolved rapidly in the last few years, with expansive innovation and wealth fueling multiple blockchain ecosystems. But liquidity, and use cases via protocols built on top of these chains, remain highly siloed. We decided to build a solution that enables users to access liquidity across their entire, cross-chain portfolios.
+What is Prime Protocol?
+Prime Protocol is a cross-chain prime brokerage which allows users to borrow across chains backed by their entire portfolio of cross chain assets. At Prime, we are pushing the boundaries of decentralized finance by breaking down the silos between blockchains and creating one of the first cross chain xApps.
+Prime in the DeFi Stack
+We allow users to seamlessly borrow against their entire portfolio of base assets, staked assets, iB Tokens, and more -- all at an extremely competitive interest rate. Users get access to liquidity faster than ever before on Prime Protocol.
+What is Prime's mission?
+Prime Protocol is a one stop shop where investors can deposit all their digital assets across chains into a single protocol and receive credit anywhere. By enabling loans on any chain backed by collateral everywhere, Prime will unlock liquidity for the entire crypto market. 

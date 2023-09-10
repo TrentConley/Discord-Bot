@@ -1,0 +1,14 @@
+Why Use Prime
+Key Use Cases
+Prime will allow users to experience cross-chain borrowing while overcoming the challenges formerly confronted in DeFi. With the platform's comprehensive cross-chain functionality alongside Universal Access, Money Markets, and a full liquidations page, Prime offers an array of opportunities for users to leverage the platform.
+One Account For Every Token 
+Users can can deposit their digital assets into a single protocol, Prime, and borrow against their entire portfolio. Loans are collateralized by all deposited assets, giving borrowers the benefits of a diversified portfolio.
+Instant Liquidity Anywhere
+Prime eliminates the need to bridge funds by implementing seamless cross-chain functionality directly into the protocol. Deposit money from any chain supported on Prime, and access liquidity instantly from any other supported chain.
+Cross Chain Margining 
+Prime allows for receiving liquidity on any supported chain - regardless of what chain it’s on or what kind of token it is. Rather than borrowing against each asset individually, a user can margin collateral on any chain and it will be backed by the collateral value of the user's total asset value. No need to exit a position on one chain to earn yield on another. The user can earn yield on both.
+Universal Access
+Universal Access on Prime allows users to originate a transaction from any supported chain on the platform. Users who wish to initiate a transaction on a chain that normally takes a longer amount of time to reach finality (ex. Ethereum or Polygon) will instead be able to initiate that transaction on a chain that is much faster and cheaper (ex. Moonbeam or Avalanche)! This feature allows for withdrawals or borrows to be requested on any chain, therefore granting users access to assets faster than anywhere else!
+Money Markets
+Prime Protocol will launch with pool based money markets, where users can deposit tokens and use them as collateral for other users to borrow against. What makes prime protocol different from any existing money market is how every pool is connected to one another regardless of blockchain. So, a user could deposit on Ethereum and borrow on Arbitrum, without sending tokens over a bridge. If a user has assets on both Arbitrum and Ethereum, all of those deposits can count as collateral for a single (or multiple) borrows on any chain in the network. This model of interoperability is revolutionary from both a UX perspective and a financial utility point of view, because the ability to use every asset in one protocol allows users to benefit from having a diversified portfolio.
+​
