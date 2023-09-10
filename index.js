@@ -1,10 +1,11 @@
 require('dotenv').config();
 const openAIKey = process.env['OpenAPIKey']
 const discordKey = process.env['DiscordKey']
+const connectDB = require('./db.js');
 
 
-const {Client, GatewayIntentBits} = require('discord.js');
-const client  = new Client({
+const { Client, GatewayIntentBits } = require('discord.js');
+const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMessages,
@@ -21,7 +22,7 @@ const openai = new OpenAI({
 
 const { getConversation, saveConversation } = require('./conversation.js');
 const { getEmbedding } = require('./embedder.js'); // Import getEmbedding function
-const { findClosestDocument } = require('./vectorQuery.js'); // Import finding closest document.
+const findClosestDocument = require('./vectorQuery.js');
 
 client.on('messageCreate', async (message) => {
     try {
@@ -29,14 +30,15 @@ client.on('messageCreate', async (message) => {
 
         // Get embedding for the message content
         const query_vector = await getEmbedding(message.content);
-
         // Find the closest document based on the query_vector
         const closest_document = await findClosestDocument(query_vector);
         console.log(closest_document);
-        
 
-        // Retrieve conversation history
-        let conversation = await getConversation(message.author.id);
+
+
+        const mongoose = await connectDB('test');
+
+        let conversation = await getConversation(mongoose, message.author.id);
 
         const completion = await openai.chat.completions.create({
             messages: conversation.messages.concat([{ role: 'user', content: message.content }]),
@@ -44,14 +46,15 @@ client.on('messageCreate', async (message) => {
         });
 
         // Save conversation history
-        conversation.messages.push({role: 'user', content: message.content});
+        conversation.messages.push({ role: 'user', content: message.content });
         conversation.messages.push({ role: 'assistant', content: completion.choices[0].message.content });
-        await saveConversation(conversation);
+        await saveConversation(mongoose, conversation);
+        mongoose.connection.close();
 
         console.log(message.content);
         console.log(completion.choices);
         message.reply(`${completion.choices[0].message.content}`)
-        
+
     } catch (error) {
         console.log(error);
     }

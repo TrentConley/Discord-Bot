@@ -1,19 +1,21 @@
 const mongoose = require('mongoose');
+
 const MongoDBPassword = process.env['MongoDBPassword'];
-const uri = `mongodb+srv://trentconley:${MongoDBPassword}@cluster0.aaepbj6.mongodb.net/?retryWrites=true&w=majority`;
 
-mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverApi: {
-    version: '1',
-    strict: true,
-    deprecationErrors: true,
-  }
-}).then(() => {
-  console.log("You successfully connected to MongoDB!");
-}).catch(err => {
-  console.error('Connection error', err);
-});
+const connectDB = async (dbName) => {
+    const uri = `mongodb+srv://trentconley:${MongoDBPassword}@cluster0.aaepbj6.mongodb.net/${dbName}?retryWrites=true&w=majority`;
 
-module.exports = mongoose;
+    await mongoose.connect(uri, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        serverApi: {
+            version: "1",
+            strict: false
+        }
+    });
+
+    console.log("You successfully connected to MongoDB!");
+    return mongoose;
+};
+
+module.exports = connectDB;
