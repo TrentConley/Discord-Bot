@@ -1,7 +1,6 @@
 require('dotenv').config();
 const openAIKey = process.env['OpenAPIKey']
 const discordKey = process.env['DiscordKey']
-const { getEmbedding } = require('./embedder'); // Import getEmbedding function
 
 
 const {Client, GatewayIntentBits} = require('discord.js');
@@ -20,7 +19,9 @@ const openai = new OpenAI({
     apiKey: openAIKey, // defaults to process.env["OPENAI_API_KEY"]
 });
 
-const { getConversation, saveConversation, findClosestDocument } = require('./db');
+const { getConversation, saveConversation } = require('./conversation.js');
+const { getEmbedding } = require('./embedder.js'); // Import getEmbedding function
+const { findClosestDocument } = require('./vectorQuery.js'); // Import finding closest document.
 
 client.on('messageCreate', async (message) => {
     try {

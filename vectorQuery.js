@@ -1,3 +1,5 @@
+const db = require('./db.js');
+
 const findClosestDocument = async (query_vector) => {
     // Define the aggregation pipeline for the knnBeta query
     const k_value = 1;
@@ -16,12 +18,17 @@ const findClosestDocument = async (query_vector) => {
       }
     ];
   
+    // Connect to the database and collection
+    const client = await db();
+    const collection = client.db('crypto_protocol_db').collection('documentation_pages');
+  
     // Execute the query and fetch the closest document
-    const nearest_document = await Conversation.aggregate(pipeline).exec();
+    const nearest_document = await collection.aggregate(pipeline).toArray();
     let closest_document;
     if (nearest_document.length > 0) {
       closest_document = nearest_document[0];
     }
   
     return closest_document;
-  };
+};
+module.exports = findClosestDocument;
