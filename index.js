@@ -1,7 +1,8 @@
 require('dotenv').config();
 const openAIKey = process.env['OpenAPIKey']
 const discordKey = process.env['DiscordKey']
-const openAIOrg = process.env['OpenAIOrg']
+const { getEmbedding } = require('./embedder'); // Import getEmbedding function
+
 
 const {Client, GatewayIntentBits} = require('discord.js');
 const client  = new Client({
@@ -19,11 +20,19 @@ const openai = new OpenAI({
     apiKey: openAIKey, // defaults to process.env["OPENAI_API_KEY"]
 });
 
-const { getConversation, saveConversation } = require('./db');
+const { getConversation, saveConversation, findClosestDocument } = require('./db');
 
 client.on('messageCreate', async (message) => {
     try {
         if (message.author.bot) return; //prevent infitie loop
+
+        // Get embedding for the message content
+        const query_vector = await getEmbedding(message.content);
+
+        // Find the closest document based on the query_vector
+        const closest_document = await findClosestDocument(query_vector);
+        console.log(closest_document);
+        
 
         // Retrieve conversation history
         let conversation = await getConversation(message.author.id);

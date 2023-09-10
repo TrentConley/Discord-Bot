@@ -35,5 +35,6 @@ module.exports = {
   },
   saveConversation: async (conversation) => {
     await conversation.save();
-  }
+  },
+  findClosestDocument  // Export the new function
 };
