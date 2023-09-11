@@ -13,7 +13,7 @@ const findClosestDocument = async (query_vector) => {
   // Print all documents in the collection
   // const allDocuments = await collection.find({}).toArray();
   // Define the aggregation pipeline for the knnBeta query
-  const k_value = 1;
+  const k_value = 2;
   const pipeline = [
     {
       "$search": {
@@ -31,14 +31,13 @@ const findClosestDocument = async (query_vector) => {
 
   // Execute the query and fetch the closest document
   const nearest_document = await collection.aggregate(pipeline).toArray();
-  console.log(nearest_document);
   let closest_document;
   if (nearest_document.length > 0) {
     closest_document = nearest_document[0];
   }
 
   mongoose.connection.close();
-  return closest_document;
+  return closest_document.text;
 };
 
 module.exports = findClosestDocument;

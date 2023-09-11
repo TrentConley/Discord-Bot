@@ -31,17 +31,17 @@ client.on('messageCreate', async (message) => {
         // Get embedding for the message content
         const query_vector = await getEmbedding(message.content);
         // Find the closest document based on the query_vector
-        const closest_document = await findClosestDocument(query_vector);
-        console.log(closest_document);
-
+        const closest_document_text = await findClosestDocument(query_vector);
 
 
         const mongoose = await connectDB('test');
 
         let conversation = await getConversation(mongoose, message.author.id);
 
+        const systemMessage = { role: 'system', content: closest_document_text };
+
         const completion = await openai.chat.completions.create({
-            messages: conversation.messages.concat([{ role: 'user', content: message.content }]),
+            messages: conversation.messages.concat([systemMessage, { role: 'user', content: message.content }]),
             model: 'gpt-3.5-turbo',
         });
 
