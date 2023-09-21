@@ -26,17 +26,17 @@ const findClosestDocument = require('./vectorQuery.js');
 
 client.on('messageCreate', async (message) => {
     try {
-        if (message.author.bot) return; //prevent infitie loop
-
+        if (message.author.bot) return; //prevent infinite loop
+        // connect to database 
+        const mongoose = await connectDB('crypto_protocol_db');
         // Get embedding for the message content
         const query_vector = await getEmbedding(message.content);
         // Find the closest document based on the query_vector
-        const closest_document_text = await findClosestDocument(query_vector);
-
-
-        const mongoose = await connectDB('test');
+        const closest_document_text = await findClosestDocument(query_vector, mongoose);
+        console.log(closest_document_text);
 
         let conversation = await getConversation(mongoose, message.author.id);
+        console.log(`got conversation`);
 
         const systemMessage = { role: 'system', content: closest_document_text };
 
@@ -49,12 +49,11 @@ client.on('messageCreate', async (message) => {
         conversation.messages.push({ role: 'user', content: message.content });
         conversation.messages.push({ role: 'assistant', content: completion.choices[0].message.content });
         await saveConversation(mongoose, conversation);
-        mongoose.connection.close();
 
         console.log(message.content);
         console.log(completion.choices);
         message.reply(`${completion.choices[0].message.content}`)
-
+        mongoose.connection.close();
     } catch (error) {
         console.log(error);
     }

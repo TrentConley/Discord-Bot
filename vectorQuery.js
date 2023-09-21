@@ -1,13 +1,7 @@
-const { mongo } = require('mongoose');
-const connectDB = require('./db.js');
-
-
-
-
-const findClosestDocument = async (query_vector) => {
+const findClosestDocument = async (query_vector, mongoose) => {
 
   // Use the database and collection
-  const mongoose = await connectDB('crypto_protocol_db');
+
   const collection = mongoose.connection.collection('documentation_pages');
 
   // Print all documents in the collection
