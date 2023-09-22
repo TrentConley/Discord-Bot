@@ -23,7 +23,7 @@ const openai = new OpenAI({
 // const { getConversation, saveConversation } = require('./conversation.js');
 const { getEmbedding } = require('./embedder.js'); // Import getEmbedding function
 // const findClosestDocument = require('./vectorQuery.js');
-const { findClosestDocument, fetchConversation } = require('./dbOperations');
+const { findClosestDocument, fetchConversation, saveConversation } = require('./dbOperations');
 const mongoose = require('mongoose');
 
 client.on('messageCreate', async (message) => {
@@ -42,26 +42,29 @@ client.on('messageCreate', async (message) => {
         console.log("Fetched Conversation:", conversation);
 
         const systemMessage = { role: 'system', content: closestDoc };
+        const SystemPrompt = { role: 'system', content: process.env['SystemPrompt'] };
+
 
         // Ensure messages array is initialized
         if (!conversation.messages) {
             conversation.messages = [];
         }
+        const messages = conversation.messages.concat([systemMessage, { role: 'user', content: message.content }, SystemPrompt]);
+        messages.forEach(message => {
+            console.log(message);
+        });
 
+        console.log(`Messages are ${messages}`);
         const completion = await openai.chat.completions.create({
-            messages: conversation.messages.concat([systemMessage, { role: 'user', content: message.content }]),
-            model: 'gpt-3.5-turbo',
+            messages: messages,
+            model: 'gpt-3.5-turbo-16k',
         });
 
         // Save conversation history
         conversation.messages.push({ role: 'user', content: message.content });
         conversation.messages.push({ role: 'assistant', content: completion.choices[0].message.content });
-        await saveConversation(mongoose, conversation);
-
-        console.log(message.content);
-        console.log(completion.choices);
+        await saveConversation(conversation);
         message.reply(`${completion.choices[0].message.content}`)
-        mongoose.connection.close();
     } catch (error) {
         console.log(error);
     }
