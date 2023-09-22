@@ -20,25 +20,33 @@ const openai = new OpenAI({
     apiKey: openAIKey, // defaults to process.env["OPENAI_API_KEY"]
 });
 
-const { getConversation, saveConversation } = require('./conversation.js');
+// const { getConversation, saveConversation } = require('./conversation.js');
 const { getEmbedding } = require('./embedder.js'); // Import getEmbedding function
-const findClosestDocument = require('./vectorQuery.js');
+// const findClosestDocument = require('./vectorQuery.js');
+const { findClosestDocument, fetchConversation } = require('./dbOperations');
+const mongoose = require('mongoose');
 
 client.on('messageCreate', async (message) => {
     try {
+
         if (message.author.bot) return; //prevent infinite loop
-        // connect to database 
-        const mongoose = await connectDB('crypto_protocol_db');
-        // Get embedding for the message content
         const query_vector = await getEmbedding(message.content);
-        // Find the closest document based on the query_vector
-        const closest_document_text = await findClosestDocument(query_vector, mongoose);
-        console.log(closest_document_text);
 
-        let conversation = await getConversation(mongoose, message.author.id);
-        console.log(`got conversation`);
+        // Fetch closest document
+        const closestDoc = await findClosestDocument(query_vector);
+        console.log("Closest Document:", closestDoc);
 
-        const systemMessage = { role: 'system', content: closest_document_text };
+        // Fetch conversation
+
+        const conversation = await fetchConversation(message.author.id);
+        console.log("Fetched Conversation:", conversation);
+
+        const systemMessage = { role: 'system', content: closestDoc };
+
+        // Ensure messages array is initialized
+        if (!conversation.messages) {
+            conversation.messages = [];
+        }
 
         const completion = await openai.chat.completions.create({
             messages: conversation.messages.concat([systemMessage, { role: 'user', content: message.content }]),

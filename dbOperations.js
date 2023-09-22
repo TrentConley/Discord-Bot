@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 
-const MongoDBPassword = 'your_password_here';
-const dbName = 'your_db_name_here';
+const MongoDBPassword = process.env['MongoDBPassword'];
+const dbName = process.env['DbName'];
 const uri = `mongodb+srv://trentconley:${MongoDBPassword}@cluster0.aaepbj6.mongodb.net/${dbName}?retryWrites=true&w=majority`;
 
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('MongoDB Connected'))
+    .catch(err => console.log(err));
+
 
 const findClosestDocument = async (query_vector) => {
     const collection = mongoose.connection.collection('documentation_pages');
@@ -46,11 +49,31 @@ if (mongoose.models.Conversation) {
 }
 
 const fetchConversation = async (userId) => {
-    const conversation = await Conversation.findOne({ userId: userId });
+    let conversation = await Conversation.findOne({ userId: userId });
+    if (!conversation) {
+        // If conversation is not found, create a new one
+        conversation = new Conversation({
+            userId: userId,
+            messages: []
+        });
+        await conversation.save();  // Save the new conversation to the database
+    }
     return conversation;
+};
+
+
+const saveConversation = async (conversation) => {
+    const query = { userId: conversation.userId };  // Query by userId
+    const update = { messages: conversation.messages };  // Update the messages field
+    const options = { upsert: true, new: true };  // Create a new document if not found
+
+    // Update or insert the conversation
+    const updatedConversation = await Conversation.findOneAndUpdate(query, update, options);
+    return updatedConversation;
 };
 
 module.exports = {
     findClosestDocument,
-    fetchConversation
+    fetchConversation,
+    saveConversation  // Export the saveConversation function
 };
