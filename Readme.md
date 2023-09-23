@@ -5,6 +5,8 @@ This is a Discord bot for the company Prime Protocol. It uses OpenAI's GPT-3 mod
 ## Setup
 
 1. Install dependencies with `npm install`.
+    - On the aws sever, install npm install pm2 -g
+    - see this link https://saturncloud.io/blog/how-to-keep-your-nodejs-server-running-forever-on-ec2-a-comprehensive-guide/#:~:text=By%20using%20PM2%2C%20you%20can,server%20running%20indefinitely%20on%20EC2.
 2. Set up your environment variables in a `.env` file. You will need:
     - `OpenAPIKey`: Your OpenAI API key.
     - `DiscordKey`: Your Discord bot token.

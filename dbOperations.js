@@ -57,6 +57,11 @@ const fetchConversation = async (userId) => {
             messages: []
         });
         await conversation.save();  // Save the new conversation to the database
+    } else {
+        // If conversation is longer than 10 lines, only return the most recent 10 lines
+        if (conversation.messages.length > 10) {
+            conversation.messages = conversation.messages.slice(-10);
+        }
     }
     return conversation;
 };
