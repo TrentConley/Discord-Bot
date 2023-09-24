@@ -1,0 +1,19 @@
+What is Prime Protocol?
+
+Prime Protocol is a cross-chain prime brokerage that allows users to borrow against the value of their entire portfolio of assets across numerous chains. Prime provides access to instant liquidity by eliminating the need to bridge or swap your assets across chains.
+
+What is the Prime Pioneer NFT?
+
+The Prime Pioneer NFT commemorates active and valuable participation in Prime Protocol’s testnet. Holders of the NFT are granted an exclusive role in our Discord. The Prime Pioneer NFT is non-transferrable and can no longer be obtained.
+
+Why do some transactions take longer than others to process on Prime?
+
+Prime Protocol is a cross-chain platform, with support for many different blockchains. Some blockchains naturally have a longer time to reach finality for transactions, meaning that transactions on those chains will take longer to process. We introduced Universal Access to allow users to initiate transactions on any supported chain on the platform while paying gas fees using any other chain supported on Prime to help alleviate some of these finality issues and help save our users time and money for their transactions.
+
+Does Prime have a token?
+
+Prime Protocol does not currently have a token. Any tokens you may see that claim to be associated with the protocol are scams.
+
+Where can I view Prime's audits?
+
+All audit data for Prime's contracts will be published when mainnet is live. Prime Protocol has undergone multiple audits from Ackee Blockchain and Veridise.

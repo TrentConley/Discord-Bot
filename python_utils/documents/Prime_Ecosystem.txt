@@ -1,0 +1,4 @@
+Prime uses Moonbeam as a home base for our cross-chain connected smart contracts —  Moonbeam is included in our initial deployment, and important calculations and data will be stored on the Moonbeam blockchain.
+Prime uses Axelar and Wormhole as General Message Passers for the protocol. Axelar and Wormhole allow for cross-chain interoperability, enabling Prime users to quickly and securely manage their positions on different blockchains. Axelar and Wormhole's infrastructure will allow our Master State on Moonbeam to communicate securely with applications on many other blockchains.
+We are dedicated to supporting as many of the top blockchains in the DeFi ecosystem as possible. We will continually expand support for blockchains throughout the life of the protocol to ensure Prime users have access to the chains they want to use.
+https://docs.primeprotocol.xyz/other-information/prime-ecosystem
