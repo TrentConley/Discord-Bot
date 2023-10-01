@@ -9,13 +9,19 @@ docs_service = build('docs', 'v1', credentials=credentials)
 sheets_service = build('sheets', 'v4', credentials=credentials)
 
 # Fetch the Google Doc
-document_id = 'your_google_doc_id_here'
+document_id = 'https://docs.google.com/document/d/1dGQwMCnn52BGhc_QRQnJSW04E_llFp0cM0xLGaokWXA/edit'
 document = docs_service.documents().get(documentId=document_id).execute()
 
 # Extract hyperlinks
 hyperlinks = []
 for element in document['body']['content']:
-    # Your code here to extract hyperlinks from the element
+    if 'paragraph' in element:
+        for paragraphElement in element['paragraph']['elements']:
+            if 'textRun' in paragraphElement:
+                textRun = paragraphElement['textRun']
+                if 'link' in textRun['textStyle']:
+                    hyperlink = textRun['textStyle']['link']['url']
+                    hyperlinks.append(hyperlink)
 
 # Create a new Google Sheet
 sheet = sheets_service.spreadsheets().create().execute()
