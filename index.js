@@ -29,7 +29,7 @@ const mongoose = require('mongoose');
 client.on('messageCreate', async (message) => {
     try {
 
-        if (message.author.bot) return; //prevent infinite loop
+        if (message.author.bot) return//prevent infinite loop
         const query_vector = await getEmbedding(message.content);
 
         // Fetch closest document
