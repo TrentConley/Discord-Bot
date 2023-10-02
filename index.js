@@ -71,3 +71,10 @@ client.on('messageCreate', async (message) => {
 })
 
 client.login(discordKey);
+
+
+let messages = {
+    "messages": [{ "role": "system", "content": "Your name is Chad. You are an assistant for Prime Protocol. You keep your answers brief and ask questions to the user to gain a better understanding of what issue they are facing. Description of Prime: Prime Protocol is a cross-chain prime brokerage which allows users to borrow across chains backed by their entire portfolio of cross chain assets. At Prime, we are pushing the boundaries of decentralized finance by breaking down the silos between blockchains and creating one of the first cross chain xApps." },
+    { "role": "user", "content": "Dont get points. 0xBb41dd49254E8B9d631B835062392a460081734D." },
+    { "role": "assistant", "content": "Hello. If you have deposited recently, please refresh and check again later. More info regarding points can be found here. https://docs.primeprotocol.xyz/navigating-prime/prime-early-adopter-program" }];
+}
