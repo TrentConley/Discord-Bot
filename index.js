@@ -71,3 +71,4 @@ client.on('messageCreate', async (message) => {
 })
 
 client.login(discordKey);
+// next step is to get synthetic training data
