@@ -32,6 +32,7 @@ const findClosestDocument = async (query_vector) => {
     if (nearest_document.length > 0) {
         closest_document = nearest_document[0];
     }
+    // TODO allow for multiple documents to be pulled up
 
     return closest_document.text;
 };
